@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Managment App</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<nav class="nav">
+    <h1>
+        Student Managment Application
+    </h1>
+</nav>
+<div id="container">
+    <h1>Create New Student</h1>
+    <form th:action="@{'/studentUpdate/' + ${student.id}}" th:object="${student}" method="post">
+        Student First Name
+        <input type="text" name="firstName" placeholder="Enter Your First Name" id="firstName" class="input" th:field="*{firstName}">
+        Student Last Name
+        <input type="text" name="lastName" id="lastName" placeholder="Enter Your Last Name" class="input" th:field="*{lastName}">
+        Student Email
+        <input type="email" name="email" id="email" placeholder="Enter Your Email" class="input" th:field="*{email}">
+        <div class="btn">
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

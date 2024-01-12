@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="nav">
+        <h1>
+            Student Management Application
+        </h1>
+    </nav>
+    <main class="container mt-4">
+        <h1>List Students</h1>
+        <form th:action="@{/students/new}">
+            <button type="submit" class="btn btn-primary">Add Student</button>
+        </form>
+        <table class="table mt-3">
+            <thead>
+                <tr>
+                    <th>Student First Name</th>
+                    <th>Student Last Name</th>
+                    <th>Email Address</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="student : ${students}">
+                    <td th:text="${student.firstName}"></td>
+                    <td th:text="${student.lastName}"></td>
+                    <td th:text="${student.email}"></td>
+                    <td>
+                        <div class="btn-group">
+                            <form th:action="@{/students/{id}/update(id=${student.id})}" th:method="get" th:object="${student}">
+                                <button type="submit" class="btn btn-warning">Update</button>
+                            </form>
+                            <form th:action="@{/students/{id}/delete(id=${student.id})}" th:method="post" th:object="${student}">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
